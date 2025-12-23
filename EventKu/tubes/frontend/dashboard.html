@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EventKu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-ticket-alt"></i>
+                <span>EventKu</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-info">
+                <h4 id="userName">Loading...</h4>
+                <span id="userRole" class="role-badge">Loading...</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu" id="sidebarMenu">
+            <!-- Menu akan di-render oleh JavaScript sesuai role -->
+        </nav>
+
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="topbar-title">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn-icon">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area" id="contentArea">
+            <!-- Content akan di-render oleh JavaScript -->
+        </div>
+    </main>
+
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/dashboard-admin.js"></script>
+    <script src="js/dashboard-penjual.js"></script>
+    <script src="js/dashboard-pembeli.js"></script>
+</body>
+</html>
+

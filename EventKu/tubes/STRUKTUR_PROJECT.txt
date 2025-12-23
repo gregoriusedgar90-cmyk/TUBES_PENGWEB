@@ -1,0 +1,372 @@
+================================================================================
+                    STRUKTUR PROJECT LENGKAP
+             Sistem Pemesanan Tiket Event Online - Java OOP
+================================================================================
+
+tubes/
+│
+├── 📁 src/                                  # Source code folder
+│   │
+│   ├── 📄 Main.java                         # Entry point aplikasi
+│   │                                        # - Menu utama (Login/Register/Exit)
+│   │                                        # - Handler untuk setiap role
+│   │                                        # - Demonstrasi Polymorphism
+│   │
+│   ├── 📁 models/                           # Domain Models (Entity Classes)
+│   │   │
+│   │   ├── 📄 User.java                     # ⭐ ABSTRACT PARENT CLASS
+│   │   │                                    # - Abstract class untuk semua user
+│   │   │                                    # - Abstract methods: displayMenu()
+│   │   │                                    # - Attributes: userId, username, password, etc
+│   │   │                                    # 
+│   │   ├── 📄 Admin.java                    # ⭐ INHERITANCE + INTERFACE
+│   │   │                                    # - Extends User
+│   │   │                                    # - Implements Verifikasi
+│   │   │                                    # - Role: Verifikasi event, kelola user
+│   │   │                                    # 
+│   │   ├── 📄 Penjual.java                  # ⭐ INHERITANCE
+│   │   │                                    # - Extends User
+│   │   │                                    # - Role: Event Organizer
+│   │   │                                    # - CRUD Event, lihat statistik
+│   │   │                                    # 
+│   │   ├── 📄 Pembeli.java                  # ⭐ INHERITANCE + INTERFACE
+│   │   │                                    # - Extends User
+│   │   │                                    # - Implements Pembayaran
+│   │   │                                    # - Role: Customer/Buyer
+│   │   │                                    # - Browse, pesan tiket, bayar
+│   │   │                                    # 
+│   │   ├── 📄 Event.java                    # ⭐ ENCAPSULATION
+│   │   │                                    # - Entity untuk data event
+│   │   │                                    # - Private attributes + getter/setter
+│   │   │                                    # - Method kurangiKuota(), isVerified()
+│   │   │                                    # 
+│   │   ├── 📄 Transaksi.java                # ⭐ ENCAPSULATION
+│   │   │                                    # - Entity untuk data transaksi
+│   │   │                                    # - Status: Pending/Paid/Cancelled
+│   │   │                                    # - Method konfirmasiPembayaran()
+│   │   │                                    # 
+│   │   └── 📄 Tiket.java                    # ⭐ ENCAPSULATION
+│   │                                        # - Entity tiket virtual
+│   │                                        # - Generate QR Code & Barcode
+│   │                                        # - Method displayTiketVirtual()
+│   │
+│   ├── 📁 interfaces/                       # Interface Definitions
+│   │   │
+│   │   ├── 📄 Verifikasi.java               # ⭐ INTERFACE
+│   │   │                                    # - Contract untuk verifikasi event
+│   │   │                                    # - Methods: verifikasi(), approve(), reject()
+│   │   │                                    # - Implemented by: Admin
+│   │   │                                    # 
+│   │   └── 📄 Pembayaran.java               # ⭐ INTERFACE
+│   │                                        # - Contract untuk proses pembayaran
+│   │                                        # - Methods: prosesPembayaran(), hitungTotal()
+│   │                                        # - Implemented by: Pembeli
+│   │
+│   ├── 📁 services/                         # Business Logic Layer
+│   │   │
+│   │   ├── 📄 Database.java                 # ⭐ COLLECTION + SINGLETON
+│   │   │                                    # - Singleton Pattern implementation
+│   │   │                                    # - ArrayList<User> users
+│   │   │                                    # - ArrayList<Event> events
+│   │   │                                    # - ArrayList<Transaksi> transaksis
+│   │   │                                    # - ArrayList<Tiket> tikets
+│   │   │                                    # - CRUD operations untuk semua entity
+│   │   │                                    # 
+│   │   ├── 📄 AuthService.java              # ⭐ EXCEPTION HANDLING
+│   │   │                                    # - Login & Register logic
+│   │   │                                    # - Throws LoginGagalException
+│   │   │                                    # - User session management
+│   │   │                                    # 
+│   │   ├── 📄 EventService.java             # ⭐ EXCEPTION HANDLING
+│   │   │                                    # - Event management (CRUD)
+│   │   │                                    # - Throws EventTidakDitemukanException
+│   │   │                                    # - Verifikasi event (Admin)
+│   │   │                                    # - Browse & search event
+│   │   │                                    # 
+│   │   └── 📄 TransaksiService.java         # ⭐ EXCEPTION HANDLING
+│   │                                        # - Transaksi & tiket management
+│   │                                        # - Throws TiketHabisException
+│   │                                        # - Throws PembayaranGagalException
+│   │                                        # - Generate tiket virtual
+│   │
+│   └── 📁 exceptions/                       # Custom Exception Classes
+│       │
+│       ├── 📄 LoginGagalException.java      # ⭐ EXCEPTION
+│       │                                    # - Thrown saat login gagal
+│       │                                    # - Username/password salah
+│       │                                    # 
+│       ├── 📄 TiketHabisException.java      # ⭐ EXCEPTION
+│       │                                    # - Thrown saat kuota tiket habis
+│       │                                    # - Informasi detail kuota
+│       │                                    # 
+│       ├── 📄 EventTidakDitemukanException.java  # ⭐ EXCEPTION
+│       │                                    # - Thrown saat event tidak ditemukan
+│       │                                    # 
+│       └── 📄 PembayaranGagalException.java # ⭐ EXCEPTION
+│                                            # - Thrown saat pembayaran gagal
+│
+├── 📁 bin/                                  # Compiled .class files
+│   ├── models/*.class
+│   ├── interfaces/*.class
+│   ├── services/*.class
+│   ├── exceptions/*.class
+│   └── Main.class
+│
+├── 📄 README.md                             # Dokumentasi utama project
+├── 📄 DOKUMENTASI_OOP.md                    # Penjelasan detail setiap prinsip OOP
+├── 📄 QUICK_START.md                        # Panduan cepat testing
+├── 📄 STRUKTUR_PROJECT.txt                  # File ini
+│
+├── 📄 compile.bat                           # Script compile untuk Windows
+├── 📄 compile.sh                            # Script compile untuk Linux/Mac
+├── 📄 run.bat                               # Script run untuk Windows
+├── 📄 run.sh                                # Script run untuk Linux/Mac
+│
+└── 📄 .gitignore                            # Git ignore configuration
+
+================================================================================
+                          PRINSIP OOP YANG DITERAPKAN
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. ENCAPSULATION (Enkapsulasi)                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ File Implementation:                                                        │
+│   - models/User.java         → Private attributes + getter/setter          │
+│   - models/Event.java        → Private attributes + validation             │
+│   - models/Transaksi.java    → Private attributes + business logic         │
+│   - models/Tiket.java        → Private attributes + display method         │
+│   - models/Admin.java        → Private adminLevel attribute                │
+│   - models/Penjual.java      → Private totalPendapatan, eventIds           │
+│   - models/Pembeli.java      → Private alamat, riwayatTransaksiIds         │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   private String userId;        // Private attribute                        │
+│   public String getUserId() {   // Public getter                            │
+│       return userId;                                                        │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2. INHERITANCE (Pewarisan)                                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Hierarchy:                                                                  │
+│                        User (Abstract)                                      │
+│                       /      |       \                                      │
+│                      /       |        \                                     │
+│                  Admin    Penjual    Pembeli                                │
+│                                                                             │
+│ File Implementation:                                                        │
+│   - models/User.java     → Abstract parent class                           │
+│   - models/Admin.java    → extends User                                    │
+│   - models/Penjual.java  → extends User                                    │
+│   - models/Pembeli.java  → extends User                                    │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   public class Admin extends User {                                         │
+│       public Admin(...) {                                                   │
+│           super(userId, username, password, email, "Admin");                │
+│       }                                                                     │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 3. ABSTRACTION (Abstraksi)                                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ File Implementation:                                                        │
+│   - models/User.java                                                        │
+│     • Abstract class dengan abstract methods                                │
+│     • public abstract void displayMenu();                                   │
+│     • public abstract String getMenuOptions();                              │
+│                                                                             │
+│ Implementation di Child:                                                    │
+│   - models/Admin.java    → Override displayMenu() - menu admin             │
+│   - models/Penjual.java  → Override displayMenu() - menu penjual           │
+│   - models/Pembeli.java  → Override displayMenu() - menu pembeli           │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   public abstract class User {                                              │
+│       public abstract void displayMenu(); // No implementation              │
+│   }                                                                         │
+│                                                                             │
+│   public class Admin extends User {                                         │
+│       @Override                                                             │
+│       public void displayMenu() {                                           │
+│           System.out.println("=== MENU ADMIN ===");                         │
+│       }                                                                     │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 4. POLYMORPHISM (Polimorfisme)                                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ File Implementation:                                                        │
+│   - Main.java                                                               │
+│     • User currentUser = authService.login(...);                            │
+│     • currentUser.displayMenu(); // Different output based on actual type   │
+│                                                                             │
+│ Runtime Polymorphism:                                                       │
+│   - Admin.displayMenu()   → Tampilkan menu admin                           │
+│   - Penjual.displayMenu() → Tampilkan menu penjual                         │
+│   - Pembeli.displayMenu() → Tampilkan menu pembeli                         │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   User currentUser = authService.login(username, password);                 │
+│   // currentUser bisa Admin, Penjual, atau Pembeli                          │
+│   currentUser.displayMenu(); // Call method sesuai tipe actual              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 5. INTERFACE                                                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Interface Definitions:                                                      │
+│   - interfaces/Verifikasi.java                                              │
+│     • Methods: verifikasi(), approveVerifikasi(), rejectVerifikasi()        │
+│     • Implemented by: Admin                                                 │
+│                                                                             │
+│   - interfaces/Pembayaran.java                                              │
+│     • Methods: prosesPembayaran(), hitungTotal(), generateKodePembayaran()  │
+│     • Implemented by: Pembeli                                               │
+│                                                                             │
+│ Implementation:                                                             │
+│   - models/Admin.java implements Verifikasi                                 │
+│   - models/Pembeli.java implements Pembayaran                               │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   public interface Pembayaran {                                             │
+│       boolean prosesPembayaran(String id, String metode);                   │
+│   }                                                                         │
+│                                                                             │
+│   public class Pembeli extends User implements Pembayaran {                 │
+│       @Override                                                             │
+│       public boolean prosesPembayaran(String id, String metode) {           │
+│           // Implementation                                                 │
+│       }                                                                     │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 6. COLLECTION (ArrayList)                                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ File Implementation:                                                        │
+│   - services/Database.java                                                  │
+│     • private ArrayList<User> users;                                        │
+│     • private ArrayList<Event> events;                                      │
+│     • private ArrayList<Transaksi> transaksis;                              │
+│     • private ArrayList<Tiket> tikets;                                      │
+│                                                                             │
+│ Operations:                                                                 │
+│   • add()      → Menambah data                                              │
+│   • get()      → Mengambil data                                             │
+│   • remove()   → Menghapus data                                             │
+│   • search()   → Mencari data                                               │
+│   • filter()   → Menyaring data                                             │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   private ArrayList<Event> events = new ArrayList<>();                      │
+│   events.add(newEvent);                                                     │
+│   for (Event event : events) {                                              │
+│       if (event.getEventId().equals(id)) return event;                      │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 7. EXCEPTION HANDLING                                                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Custom Exceptions:                                                          │
+│   - exceptions/LoginGagalException.java                                     │
+│   - exceptions/TiketHabisException.java                                     │
+│   - exceptions/EventTidakDitemukanException.java                            │
+│   - exceptions/PembayaranGagalException.java                                │
+│                                                                             │
+│ Implementation:                                                             │
+│   - services/AuthService.java → throws LoginGagalException                  │
+│   - services/TransaksiService.java → throws TiketHabisException             │
+│   - services/EventService.java → throws EventTidakDitemukanException        │
+│   - Main.java → try-catch blocks untuk handle exceptions                    │
+│                                                                             │
+│ Contoh Kode:                                                                │
+│   try {                                                                     │
+│       Transaksi t = transaksiService.createTransaksi(...);                  │
+│   } catch (TiketHabisException e) {                                         │
+│       System.out.println("Error: " + e.getMessage());                       │
+│   } catch (EventTidakDitemukanException e) {                                │
+│       System.out.println("Error: " + e.getMessage());                       │
+│   }                                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                         ALUR KERJA APLIKASI
+================================================================================
+
+1. START → Main.main()
+   ↓
+2. Display Welcome Banner
+   ↓
+3. Main Menu Loop
+   │
+   ├─ [Belum Login]
+   │  ├─ Login → AuthService.login() → throws LoginGagalException
+   │  ├─ Register → AuthService.register()
+   │  └─ Exit
+   │
+   └─ [Sudah Login]
+      │
+      ├─ [Role: Admin]
+      │  ├─ Verifikasi Event → EventService.verifyEvent()
+      │  ├─ Kelola User → Database.getAllUsers()
+      │  ├─ Laporan Transaksi → TransaksiService.getAllTransaksi()
+      │  └─ Statistik Sistem
+      │
+      ├─ [Role: Penjual]
+      │  ├─ Tambah Event → EventService.createEvent()
+      │  ├─ Lihat Event → EventService.getEventsByPenjual()
+      │  ├─ Edit Event → EventService.updateEvent()
+      │  ├─ Hapus Event → EventService.deleteEvent()
+      │  └─ Statistik Penjualan
+      │
+      └─ [Role: Pembeli]
+         ├─ Browse Event → EventService.browseEvents()
+         ├─ Cari Event → EventService.searchEvents()
+         ├─ Pesan Tiket → TransaksiService.createTransaksi()
+         │                 throws TiketHabisException
+         ├─ Pembayaran → TransaksiService.prosesPembayaran()
+         │                throws PembayaranGagalException
+         │                → Generate Tiket Virtual
+         ├─ Riwayat Transaksi → TransaksiService.getRiwayatTransaksi()
+         └─ Lihat Tiket → TransaksiService.getTiketPembeli()
+                          → Tiket.displayTiketVirtual()
+
+================================================================================
+                           DATA DUMMY UNTUK TESTING
+================================================================================
+
+Users:
+  1. Username: admin         | Password: admin123      | Role: Admin
+  2. Username: organizer1    | Password: organizer123  | Role: Penjual
+  3. Username: pembeli1      | Password: pembeli123    | Role: Pembeli
+
+Events:
+  1. EVT001 - Konser Musik Rock 2025        | Status: Approved
+  2. EVT002 - Workshop Digital Marketing    | Status: Approved
+  3. EVT003 - Seminar Teknologi AI          | Status: Pending
+
+================================================================================
+                            FILE SUMMARY
+================================================================================
+
+Total Files: 26
+  - Java Source Files: 18
+  - Compiled Class Files: 18
+  - Documentation Files: 4
+  - Script Files: 4
+  - Config Files: 2
+
+Lines of Code: ~2500+ lines (estimated)
+
+Prinsip OOP: 7 prinsip utama + 1 design pattern (Singleton)
+
+================================================================================
+                      © 2025 - Sistem Pemesanan Tiket Event
+================================================================================
+

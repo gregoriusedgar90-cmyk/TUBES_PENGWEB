@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EventKu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>EventKu</span>
+                </div>
+                <h2>Buat Akun Baru</h2>
+                <p>Bergabunglah dengan EventKu sekarang</p>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="role">Daftar Sebagai</label>
+                    <div class="input-group">
+                        <i class="fas fa-user-tag"></i>
+                        <select id="role" name="role" required onchange="updateRoleFields()">
+                            <option value="">Pilih Role</option>
+                            <option value="Pembeli">Pembeli (Customer)</option>
+                            <option value="Penjual">Penjual (Event Organizer)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Pilih username" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Minimal 6 karakter" required minlength="6">
+                    </div>
+                    <small>Password minimal 6 karakter</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="nomorTelepon">Nomor Telepon</label>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="nomorTelepon" name="nomorTelepon" placeholder="08123456789" required>
+                    </div>
+                </div>
+
+                <!-- Fields for Pembeli -->
+                <div id="pembeliFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <textarea id="alamat" name="alamat" placeholder="Alamat lengkap" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fields for Penjual -->
+                <div id="penjualFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="namaOrganisasi">Nama Organisasi</label>
+                        <div class="input-group">
+                            <i class="fas fa-building"></i>
+                            <input type="text" id="namaOrganisasi" name="namaOrganisasi" placeholder="Nama organisasi/perusahaan">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agree" required>
+                        <span>Saya setuju dengan <a href="#">syarat dan ketentuan</a></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">
+                    <span id="registerBtnText">Daftar</span>
+                    <i id="registerSpinner" class="fas fa-spinner fa-spin" style="display: none;"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Sudah punya akun? <a href="login.html">Login di sini</a></p>
+                <p><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Home</a></p>
+            </div>
+        </div>
+
+        <!-- Alert -->
+        <div id="alert" class="alert" style="display: none;"></div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function updateRoleFields() {
+            const role = document.getElementById('role').value;
+            document.getElementById('pembeliFields').style.display = role === 'Pembeli' ? 'block' : 'none';
+            document.getElementById('penjualFields').style.display = role === 'Penjual' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
+

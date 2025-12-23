@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiket Virtual - EventKu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tiket.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tiket-page">
+    <div class="tiket-container">
+        <div class="tiket-card">
+            <!-- Header -->
+            <div class="tiket-header">
+                <div class="tiket-logo">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>EventKu</span>
+                </div>
+                <div class="tiket-status">
+                    <span class="status-badge" id="statusBadge">AKTIF</span>
+                </div>
+            </div>
+
+            <!-- Tiket Info -->
+            <div class="tiket-info">
+                <h2 id="eventName">Loading...</h2>
+                <div class="info-row">
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <small>Nama Pemesan</small>
+                            <strong id="pembeliName">-</strong>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <small>Tanggal Event</small>
+                            <strong id="eventDate">-</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <small>Lokasi</small>
+                            <strong id="eventLocation">-</strong>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-ticket"></i>
+                        <div>
+                            <small>Tiket ID</small>
+                            <strong id="tiketId">-</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <div class="qr-container">
+                    <div id="qrLoading" class="qr-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Generating QR Code...</p>
+                    </div>
+                    <img id="qrCodeImage" src="" alt="QR Code" style="display: none;">
+                </div>
+                <p class="qr-instruction">
+                    <i class="fas fa-info-circle"></i>
+                    Tunjukkan QR code ini saat masuk event
+                </p>
+            </div>
+
+            <!-- Barcode -->
+            <div class="barcode-section">
+                <div class="barcode">
+                    <span id="barcodeNumber">|||||| |||| ||||| |||| ||||||</span>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="tiket-actions">
+                <button onclick="downloadTiket()" class="btn-action">
+                    <i class="fas fa-download"></i>
+                    Download Tiket
+                </button>
+                <button onclick="shareTiket()" class="btn-action">
+                    <i class="fas fa-share"></i>
+                    Bagikan
+                </button>
+                <button onclick="printTiket()" class="btn-action">
+                    <i class="fas fa-print"></i>
+                    Print
+                </button>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="tiket-notes">
+                <h4><i class="fas fa-exclamation-triangle"></i> Penting!</h4>
+                <ul>
+                    <li>Simpan tiket ini dengan baik</li>
+                    <li>Tunjukkan QR code saat masuk event</li>
+                    <li>Tiket hanya berlaku sekali</li>
+                    <li>Tidak dapat di-refund</li>
+                </ul>
+            </div>
+
+            <!-- Back Button -->
+            <div class="tiket-footer">
+                <a href="dashboard.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    Kembali ke Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/tiket.js"></script>
+</body>
+</html>
+
